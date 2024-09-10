@@ -25,6 +25,11 @@ module.exports = (error, req, res, next) => {
   if (error.name === "RoomAlreadyCreated") {
     return res.status(400).json({ message: "Room already exist" });
   }
+  if (error.name === "Unauthorized") {
+    return res
+      .status(401)
+      .json({ message: "You are not authorized to do this action" });
+  }
 
   if (error.name === "notFound") {
     return res.status(404).json({
