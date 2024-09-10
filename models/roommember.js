@@ -23,5 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "RoomMember",
     }
   );
+  RoomMember.beforeCreate(async (roomMember) => {
+    const { Room } = sequelize.models;
+    const room = await Room.create();
+    roomMember.RoomId = room.id;
+  });
   return RoomMember;
 };
