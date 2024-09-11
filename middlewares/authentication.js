@@ -5,16 +5,16 @@ module.exports = async (req, res, next) => {
   try {
     let access_token = req.headers.authorization;
 
-    if (!access_token) throw { name: "invalidToken" };
+    if (!access_token) throw { name: "InvalidToken" };
 
     const [bearer, token] = access_token.split(" ");
-    if (!bearer) throw { name: "invalidToken1" };
-    if (!token) throw { name: "invalidToken2" };
+    if (!bearer) throw { name: "InvalidToken" };
+    if (!token) throw { name: "InvalidToken" };
 
     const { userId } = verifyToken(token);
 
     const user = await User.findByPk(userId);
-    if (!user) throw { name: "invalidToken3" };
+    if (!user) throw { name: "InvalidToken" };
 
     req.user = {
       id: user.id,
