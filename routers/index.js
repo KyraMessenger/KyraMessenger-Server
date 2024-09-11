@@ -5,7 +5,7 @@ const room = require("./roomRoutes");
 const user = require("./userRoutes");
 const checkLogin = require("../middlewares/authentication");
 router.use("/", auth);
-router.use("/", user);
 router.use(checkLogin);
+router.use("/", user);
 router.use("/", room);
 module.exports = router;
