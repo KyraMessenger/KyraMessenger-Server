@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   RoomMember.beforeCreate(async (roomMember) => {
     const { Room } = sequelize.models;
-    const room = await Room.create();
+    const room = await Room.create({});
     roomMember.RoomId = room.id;
   });
   return RoomMember;
