@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Friendship);
       User.hasMany(models.Message);
       User.hasMany(models.RoomMember);
+      User.hasMany(models.NewMessage);
     }
   }
   User.init(

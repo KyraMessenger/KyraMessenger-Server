@@ -1,3 +1,4 @@
+const { where, Op } = require("sequelize");
 const { User } = require("../../models");
 
 module.exports = class UserId {
@@ -35,5 +36,23 @@ module.exports = class UserId {
     } catch (error) {
       next(error);
     }
+  }
+
+  static async findAllUser(req, res, next) {
+    const { id } = req.user;
+
+    const users = await User.findAll({
+      attributes: {
+        exclude: ["password"],
+      },
+      include: "Profile",
+      where: {
+        id: {
+          [Op.ne]: id,
+        },
+      },
+    });
+
+    return res.status(200).json(users);
   }
 };
