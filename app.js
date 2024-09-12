@@ -7,9 +7,7 @@ const authentication = require("./middlewares/authentication");
 const { NewMessage, User, Profile } = require("./models");
 
 const { createServer } = require("http");
-const { join } = require("path");
 const { Server } = require("socket.io");
-const { where } = require("sequelize");
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
