@@ -12,15 +12,16 @@ router.use(checkLogin);
 router.use("/", user);
 router.get("/message", async (req, res, next) => {
   try {
-    const message = await NewMessage.findAll({
+    const messages = await NewMessage.findAll({
       include: {
         model: User,
         attributes: { exclude: ["password"] },
         include: Profile,
       },
+      order: [["createdAt", "ASC"]],
     });
 
-    res.status(200).json(message);
+    res.status(200).json(messages);
   } catch (error) {
     next(error);
   }
