@@ -21,7 +21,7 @@ router.get("/message", async (req, res, next) => {
       order: [["createdAt", "ASC"]],
     });
 
-    res.status(200).json(message);
+    res.status(200).json(messages);
   } catch (error) {
     next(error);
   }
